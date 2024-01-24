@@ -128,7 +128,7 @@ body {
   &__form-wrapper {
     display: grid;
     gap: 16px;
-    padding-bottom: 20px;
+    padding-bottom: 36px;
   }
 }
 
@@ -150,10 +150,38 @@ body {
       height: 45px;
       border-radius: 40px;
       border: 1px solid $color-primary-700;
-      padding-left: 20px;
-      width: calc(100% - 20px);
+      padding: 0px 20px;
+      width: calc(100% - 40px);
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+
+    input[type="datetime-local"] {
+      @extend .text--b1;
+      font-family: $font-family-primary;
+      font-weight: 400;
+
+      &::-webkit-calendar-picker-indicator {
+        filter: invert(40%) sepia(80%) saturate(1907%) hue-rotate(170deg)
+          brightness(98%) contrast(101%);
+      }
     }
   }
+
+  &--amount-of-item {
+    position: relative;
+
+    input {
+      text-align: center;
+    }
+  }
+
   &__symbol {
     &--currency {
       position: relative;
@@ -182,6 +210,28 @@ body {
         right: 20px;
         z-index: 2;
       }
+    }
+  }
+
+  &__button {
+    &--increase {
+      font-size: 24px;
+      color: $color-primary-700;
+      position: absolute;
+      top: 18%;
+      right: 20px;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    &--decrease {
+      font-size: 24px;
+      color: $color-primary-700;
+      position: absolute;
+      top: 18%;
+      left: 20px;
+      z-index: 2;
+      cursor: pointer;
     }
   }
 }

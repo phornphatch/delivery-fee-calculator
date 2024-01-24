@@ -42,50 +42,51 @@ export default function Home() {
               <div className="calculator__form-wrapper">
                 <div className="input__wrapper">
                   <label>
-                    Cart Value<span>*</span>
+                    Cart value<span>*</span>
                   </label>
                   <span className="input__symbol--currency">
                     <input
                       type="number"
-                      placeholder="Value"
+                      placeholder="Enter cart Value"
                       className="price__input"
                     />
                   </span>
                 </div>
                 <div className="input__wrapper">
                   <label>
-                  Delivery Distance<span>*</span>
+                    Delivery distance<span>*</span>
                   </label>
                   <span className="input__symbol--distance">
                     <input
                       type="number"
-                      placeholder="Value"
+                      placeholder="Enter delivery distance"
                       className="price__input"
                     />
                   </span>
                 </div>
                 <div className="input__wrapper">
                   <label>
-                  Amount of Items<span>*</span>
+                    Amount of Item(s)<span>*</span>
                   </label>
-                  <span className="input__symbol--distance">
+                  <div className="input--amount-of-item">
+                    <div className="input__button--decrease">-</div>
+                    <div className="input__button--increase">+</div>
                     <input
                       type="number"
-                      placeholder="Value"
+                      placeholder="Enter amount of item(s)"
                       className="price__input"
                     />
-                  </span>
+                  </div>
                 </div>
                 <div className="input__wrapper">
                   <label>
-                  Date/Time<span>*</span>
-                  </label>   
-                    <input
-                      type="datetime-local"
-                      placeholder="Value"
-                      
-                      className="price__input"
-                    />
+                    Date/Time<span>*</span>
+                  </label>
+                  <input
+                    type="datetime-local"
+                    placeholder="Value"
+                    className="price__input"
+                  />
                 </div>
               </div>
               <div className="calculator__btn-wrapper">
