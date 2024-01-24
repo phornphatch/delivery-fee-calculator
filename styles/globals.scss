@@ -1,0 +1,73 @@
+$color-primary-100: #f8f8fb;
+$color-primary-300: #ebf7fc;
+$color-primary-500: #00b5e6;
+$color-primary-700: #009de0;
+$color-primary-900: #162e61;
+$color-white: #ffffff;
+$color-black: #080f1e;
+$color-success: #65c665;
+$color-danger: #d95353;
+
+$font-family-primary: "Inter";
+
+$breakpoint-mobile: 679px;
+$breakpoint-tablet: 1199px;
+
+body {
+  font-family: $font-family-primary;
+  background-color: $color-primary-100;
+}
+
+.text {
+  &--h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+  &--h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+  &--sh1 {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  &--b1 {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  &--b2 {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  &--btn {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+}
+
+.button {
+  &--primary {
+    @extend .text--btn;
+    color: $color-primary-100;
+    background-color: $color-primary-700;
+    border-radius: 40px;
+    height: 45px;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-primary-900;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+  &--secondary {
+    color: $color-primary-500;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-primary-900;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+}
