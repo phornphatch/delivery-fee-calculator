@@ -37,7 +37,71 @@ export default function Home() {
               <div>your convenience, our commitment. 📦💰</div>
             </div>
           </div>
-          Calculator card
+          <div className="calculator__card-wrapper">
+            <div className="calculator__card-wrapper--left">
+              <div className="calculator__form-wrapper">
+                <div className="input__wrapper">
+                  <label>
+                    Cart Value<span>*</span>
+                  </label>
+                  <span className="input__symbol--currency">
+                    <input
+                      type="number"
+                      placeholder="Value"
+                      className="price__input"
+                    />
+                  </span>
+                </div>
+                <div className="input__wrapper">
+                  <label>
+                  Delivery Distance<span>*</span>
+                  </label>
+                  <span className="input__symbol--distance">
+                    <input
+                      type="number"
+                      placeholder="Value"
+                      className="price__input"
+                    />
+                  </span>
+                </div>
+                <div className="input__wrapper">
+                  <label>
+                  Amount of Items<span>*</span>
+                  </label>
+                  <span className="input__symbol--distance">
+                    <input
+                      type="number"
+                      placeholder="Value"
+                      className="price__input"
+                    />
+                  </span>
+                </div>
+                <div className="input__wrapper">
+                  <label>
+                  Date/Time<span>*</span>
+                  </label>   
+                    <input
+                      type="datetime-local"
+                      placeholder="Value"
+                      
+                      className="price__input"
+                    />
+                </div>
+              </div>
+              <div className="calculator__btn-wrapper">
+                <div className="button--primary">Calculate</div>
+              </div>
+            </div>
+            <div className="calculator__card-wrapper--right">
+              <Image
+                src="/images/wolt-mascot-reading.svg"
+                alt="wolt mascot reading"
+                width={0}
+                height={0}
+                style={{ width: "100%", height: "auto" }}
+              />
+            </div>
+          </div>
         </div>
       </main>
     </>
