@@ -94,13 +94,44 @@ export default function Home() {
               </div>
             </div>
             <div className="calculator__card-wrapper--right">
-              <Image
+              {/* Before Click Calculate button */}
+              {/* <Image
                 src="/images/wolt-mascot-reading.svg"
                 alt="wolt mascot reading"
                 width={0}
                 height={0}
                 style={{ width: "100%", height: "auto" }}
-              />
+              /> */}
+
+              {/* After Click Calculate button */}
+              <div className="calculator__summary-wrapper">
+                <div className="text--h2">Summary</div>
+                <div className="calculator__summary--list">
+                  <div className="text--b1">Small order surcharge</div>
+                  <div className="price">xx €</div>
+                </div>
+                <div className="calculator__summary--list">
+                  <div className="text--b1">Delivery fee (... m)</div>
+                  <div className="price">xx €</div>
+                </div>
+                <div className="calculator__summary--list">
+                  <div className="text--b1">Amount of fee (...)</div>
+                  <div className="price">xx €</div>
+                </div>
+                <div className="calculator__summary--line" />
+                <div className="calculator__summary--list">
+                  <div className="text--b1">Discount</div>
+                  <div className="price">xx €</div>
+                  <div className="detail text--b2">
+                    Maximum delivery fee 15 euros
+                  </div>
+                </div>
+                <div className="calculator__summary--line" />
+                <div className="calculator__summary--list">
+                  <div className="text--h2">Total</div>
+                  <div className="price text--h2">xx €</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
