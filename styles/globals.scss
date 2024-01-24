@@ -71,3 +71,26 @@ body {
     }
   }
 }
+
+.main-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: 40px 40px;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: 50px 0px;
+  }
+}
+
+.title {
+  &__wrapper {
+    display: grid;
+    gap: 20px;
+    align-items: start;
+  }
+}
+

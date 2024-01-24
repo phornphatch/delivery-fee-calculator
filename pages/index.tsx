@@ -21,7 +21,25 @@ export default function Home() {
         />
       </Head>
       <main>
-              </main>
+        <div className="main-container">
+          <div className="title__wrapper">
+            <Image
+              src="/images/wolt-logo.svg"
+              alt="wolt logo"
+              width={200}
+              height={75}
+            />
+            <div className="text--h1">Delivery Fee Calculator</div>
+            <div className="text--sh1">
+              <div>
+                Calculate with confidence! No surprises in delivery prices
+              </div>
+              <div>your convenience, our commitment. 📦💰</div>
+            </div>
+          </div>
+          Calculator card
+        </div>
+      </main>
     </>
   );
 }
