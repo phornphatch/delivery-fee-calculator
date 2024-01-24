@@ -47,7 +47,7 @@ export default function Home() {
                   <span className="input__symbol--currency">
                     <input
                       type="number"
-                      placeholder="Enter cart Value"
+                      placeholder="Enter cart value"
                       className="price__input"
                     />
                   </span>
@@ -131,6 +131,17 @@ export default function Home() {
                   <div className="text--h2">Total</div>
                   <div className="price text--h2">xx €</div>
                 </div>
+
+                <div>
+                  Order Now -
+                </div>
+                <Image
+                className="mascot-fly"
+              src="/images/wolt-mascot-fly.svg"
+              alt="wolt logo"
+              width={60}
+              height={65}
+            />
               </div>
             </div>
           </div>

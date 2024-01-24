@@ -118,6 +118,7 @@ body {
       background-color: $color-white;
       border-radius: 0px 0px 10px 10px;
       padding: 40px 50px 40px 50px;
+      position: relative;
 
       @media (min-width: $breakpoint-tablet) {
         border-radius: 0px 10px 10px 0px;
@@ -261,4 +262,10 @@ body {
       cursor: pointer;
     }
   }
+}
+
+.mascot-fly {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
 }
