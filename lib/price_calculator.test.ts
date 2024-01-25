@@ -3,6 +3,7 @@ import {
   calculateSurcharge,
   calculateDistanceFee,
   calculateAmountOfItemsFee,
+  totalFee,
 } from "./price_calculator";
 
 describe("calculateSurcharge", () => {
@@ -64,5 +65,39 @@ describe("calculateAmountOfItemsFee", () => {
 
   test("If the number of items is 14, 6,20€ surcharge is added ((10 * 50 cents) + 1,20€)", () => {
     expect(calculateAmountOfItemsFee(14)).toBe(6.2);
+  });
+});
+
+describe("totalFee", () => {
+  test("cart value > 10 no surcharge fee/ distance < 1000m distance fee 2/ item < 5 no charge", () => {
+    expect(totalFee(12, 0, 2, 0, new Date("Jan 26, 2024 03:24:00"))).toBe(2);
+  });
+
+  test("6 6 6", () => {
+    expect(totalFee(12, 6, 6, 6, new Date("Jan 26, 2024 03:24:00"))).toBe(15);
+  });
+
+  test("cart value is equal or more than 200€, 6 6 6 ", () => {
+    expect(totalFee(200, 6, 6, 6, new Date("Jan 26, 2024 03:24:00"))).toBe(0);
+  });
+
+  test("cart value is equal or more than 200€, 6 6 6, rush hour ", () => {
+    expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 15:00:00"))).toBe(7.2);
+  });
+
+  test("cart value is equal or more than 200€, 6 6 6, rush hour ", () => {
+    expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 16:00:00"))).toBe(7.2);
+  });
+
+  test("cart value is equal or more than 200€, 6 6 6, rush hour ", () => {
+    expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:00:00"))).toBe(7.2);
+  });
+
+  test("cart value is equal or more than 200€, 6 6 6, rush hour ", () => {
+    expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:00:01"))).toBe(6);
+  });
+
+  test("cart value is equal or more than 200€, 6 6 6, rush hour ", () => {
+    expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:01:00"))).toBe(6);
   });
 });
