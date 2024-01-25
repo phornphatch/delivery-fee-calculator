@@ -5,6 +5,10 @@ import styles from "@/styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+function calculateDeliveryPrice(e: Event) {
+  e.preventDefault();
+}
+
 export default function Home() {
   return (
     <>
@@ -39,6 +43,7 @@ export default function Home() {
           </div>
           <div className="calculator__card-wrapper">
             <div className="calculator__card-wrapper--left">
+              <form onSubmit={calculateDeliveryPrice}>
               <div className="calculator__form-wrapper">
                 <div className="input__wrapper">
                   <label>
@@ -90,8 +95,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="calculator__btn-wrapper">
-                <div className="button--primary">Calculate</div>
+                <input type="submit" value="Calculate" className="button--primary" />
               </div>
+              </form>
             </div>
             <div className="calculator__card-wrapper--right">
               {/* Before Click Calculate button */}
