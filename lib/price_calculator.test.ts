@@ -20,23 +20,23 @@ describe("calculateSurcharge", () => {
 });
 
 describe("calculateDistanceFee", () => {
-  test("delivery fee for the first 1000 meters (=1km) is 2€", () => {
+  test("If the delivery distance is 999 (<= 1000m), 2€ surcharge is added", () => {
     expect(calculateDistanceFee(999)).toBe(2);
   });
 
-  test("distance 1000, 2", () => {
+  test("If the delivery distance is 1000 (<= 1000m), 2€ surcharge is added", () => {
     expect(calculateDistanceFee(1000)).toBe(2);
   });
 
-  test("distance 1001 to 1499, 3", () => {
+  test("If the delivery distance is 1499 (range 1000m - 1500m), 3€ surcharge (2€ + 1€) is added", () => {
     expect(calculateDistanceFee(1499)).toBe(3);
   });
 
-  test("1500, 3", () => {
+  test("If the delivery distance is 1500 (range 1000m - 1500m), 3€ surcharge (2€ + 1€) is added", () => {
     expect(calculateDistanceFee(1500)).toBe(3);
   });
 
-  test("1501, 4", () => {
+  test("If the delivery distance is 1501 (range 1501m - 2000m), 4€ surcharge (2€ + 2€) is adde", () => {
     expect(calculateDistanceFee(1501)).toBe(4);
   });
 });
