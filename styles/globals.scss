@@ -325,25 +325,11 @@ a {
     position: relative;
     display: inline-block;
   }
-  #dot-1 {
-    animation: wave 1s infinite;
-    animation-delay: calc(0.1s * 1);
-  }
-  #dot-2 {
-    animation: wave 1s infinite;
-    animation-delay: calc(0.1s * 2);
-  }
-  #dot-3 {
-    animation: wave 1s infinite;
-    animation-delay: calc(0.1s * 3);
-  }
-  #dot-4 {
-    animation: wave 1s infinite;
-    animation-delay: calc(0.1s * 4);
-  }
-  #dot-5 {
-    animation: wave 1s infinite;
-    animation-delay: calc(0.1s * 5);
+  @for $i from 1 through 5 {
+    #dot-#{$i} {
+      animation: wave 1s infinite;
+      animation-delay: calc(0.1s * #{$i});
+    }
   }
   @keyframes wave {
     0%,
