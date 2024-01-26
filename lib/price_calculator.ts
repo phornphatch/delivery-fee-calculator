@@ -1,4 +1,4 @@
-export function calculateSurcharge(cartValueInEuros: number): number {
+export function calculateCartValueFee(cartValueInEuros: number): number {
   if (cartValueInEuros < 10) {
     return 10 - cartValueInEuros;
   }
@@ -26,7 +26,6 @@ export function calculateDeliveredTimeFee(
   totalBeforDeliveryTimeFee: number,
   deliveredTime: Date
 ): number {
-
   if (
     deliveredTime.getDay() === 5 && // check Friday? .getDay() return number between 0 - 6 , where 0 is Sunday then 5 is Friday.
     deliveredTime.getHours() >= 15 && // check if time in range 3 - 7 pm
