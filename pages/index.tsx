@@ -4,70 +4,109 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import React, { FormEvent, FormEventHandler } from "react";
 import { useState } from "react";
-import { calculateCartValueFee, calculateDistanceFee, calculateAmountOfItemsFee, calculateDeliveredTimeFee, summarizeFee } from "@/lib/price_calculator";
+import {
+  calculateCartValueFee,
+  calculateDistanceFee,
+  calculateAmountOfItemsFee,
+  calculateDeliveredTimeFee,
+  summarizeFee,
+} from "@/lib/price_calculator";
 
 const inter = Inter({ subsets: ["latin"] });
 
-function calculateAndUpdateState(formData: any, calculateFunction: any, inputName: string, stateUpdater: any) {
-  const valueString = formData.get(inputName)
+function calculateAndUpdateState(
+  formData: any,
+  calculateFunction: any,
+  inputName: string,
+  stateUpdater: any
+) {
+  const valueString = formData.get(inputName);
   if (!valueString) {
-    console.error("No cart Value")
-    return
+    console.error("No cart Value");
+    return;
   }
-  const value = parseFloat(valueString as string)
-  const fee = calculateFunction(value)
+  const value = parseFloat(valueString as string);
+  const fee = calculateFunction(value);
   stateUpdater(fee);
   return fee;
 }
 
 export default function Home() {
-  // const [showSummary, setShowSummary] = React.useState(false)
-  const [smallOrderFee, setSmallOrderFee] = React.useState(0)
-  const [deliveryDistanceFee, setDeliveryDistanceFee] = React.useState(0)
-  const [amountOfItemsFee, setAmountOfItemsFee] = React.useState(0)
-  const [deliveryTimeFee, setDeliveryTimeFee] = React.useState(0)
-  const [discount, setDiscount] = React.useState(0)
-  const [discountReason, setDiscountReason] = React.useState("")
-  const [totalFee, setTotalFee] = React.useState(0)
+  const [showSummary, setShowSummary] = React.useState(false);
+  const [smallOrderFee, setSmallOrderFee] = React.useState(0);
+  const [deliveryDistanceFee, setDeliveryDistanceFee] = React.useState(0);
+  const [amountOfItemsFee, setAmountOfItemsFee] = React.useState(0);
+  const [deliveryTimeFee, setDeliveryTimeFee] = React.useState(0);
+  const [discount, setDiscount] = React.useState(0);
+  const [discountReason, setDiscountReason] = React.useState("");
+  const [totalFee, setTotalFee] = React.useState(0);
 
   function calculateDeliveryPrice(e: FormEvent) {
     e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement)
+    const formData = new FormData(e.target as HTMLFormElement);
 
-    const smallOrderFee = calculateAndUpdateState(formData,calculateCartValueFee, "cartValue",setSmallOrderFee)
-    const deliveryDistanceFee = calculateAndUpdateState(formData,calculateDistanceFee, "deliveryDistance",setDeliveryDistanceFee)
-    const amountOfItemsFee = calculateAndUpdateState(formData,calculateAmountOfItemsFee, "amountOfItems",setAmountOfItemsFee)
-    const totalBeforeDeliveryTimeFee = smallOrderFee + deliveryDistanceFee + amountOfItemsFee
+    const smallOrderFee = calculateAndUpdateState(
+      formData,
+      calculateCartValueFee,
+      "cartValue",
+      setSmallOrderFee
+    );
+    const deliveryDistanceFee = calculateAndUpdateState(
+      formData,
+      calculateDistanceFee,
+      "deliveryDistance",
+      setDeliveryDistanceFee
+    );
+    const amountOfItemsFee = calculateAndUpdateState(
+      formData,
+      calculateAmountOfItemsFee,
+      "amountOfItems",
+      setAmountOfItemsFee
+    );
+    const totalBeforeDeliveryTimeFee =
+      smallOrderFee + deliveryDistanceFee + amountOfItemsFee;
 
-    const deliveryTimeString = formData.get("deliveredAt")
+    const deliveryTimeString = formData.get("deliveredAt");
     if (!deliveryTimeString) {
-      console.error("No deliveryTime selected")
-      return
+      console.error("No deliveryTime selected");
+      return;
     }
-    const deliveryTime = new Date(deliveryTimeString as string)
-    setDeliveryTimeFee(calculateDeliveredTimeFee(totalBeforeDeliveryTimeFee, deliveryTime))
+    const deliveryTime = new Date(deliveryTimeString as string);
+    setDeliveryTimeFee(
+      calculateDeliveredTimeFee(totalBeforeDeliveryTimeFee, deliveryTime)
+    );
 
-    const cartValueString = formData.get("cartValue")
+    const cartValueString = formData.get("cartValue");
     if (!cartValueString) {
-      console.error("No cartValue selected")
-      return
+      console.error("No cartValue selected");
+      return;
     }
-    const cartValue = parseFloat(cartValueString as string)
+    const cartValue = parseFloat(cartValueString as string);
 
-    const { fee, discount } = summarizeFee(cartValue, smallOrderFee, deliveryDistanceFee, amountOfItemsFee, deliveryTime)
-    setDiscount(discount)
-    setTotalFee(fee)
+    const { fee, discount } = summarizeFee(
+      cartValue,
+      smallOrderFee,
+      deliveryDistanceFee,
+      amountOfItemsFee,
+      deliveryTime
+    );
+    setDiscount(discount);
+    setTotalFee(fee);
 
     // Show discount or no discount reason
     if (discount > 0) {
       if (cartValue >= 200) {
-        setDiscountReason("Free delivery for orders equal to or more than 200€");
+        setDiscountReason(
+          "Free delivery for orders equal to or more than 200€"
+        );
       } else {
         setDiscountReason("Maximum delivery fee 15 euros");
       }
     } else {
       setDiscountReason("No discount");
     }
+
+    setShowSummary(true);
   }
 
   return (
@@ -126,9 +165,7 @@ export default function Home() {
           </div>
           <div className="calculator__card-wrapper">
             <div className="calculator__card-wrapper--left">
-              <form
-                onSubmit={calculateDeliveryPrice}
-              >
+              <form onSubmit={calculateDeliveryPrice}>
                 <div className="calculator__form-wrapper">
                   <div className="input__wrapper">
                     <label>
@@ -193,73 +230,79 @@ export default function Home() {
               </form>
             </div>
             <div className="calculator__card-wrapper--right">
-              {/* Before Click Calculate button */}
-              {/* <div className="calculator__animaiton-wrapper">
-                <Image
-                  src="/images/wolt-mascot-reading.svg"
-                  alt="wolt mascot reading"
-                  width={0}
-                  height={0}
-                  style={{ width: "100%", height: "auto" }}
-                />
-                <div className="dot-animation">
-                  <div className="dot-animation__wrapper">
-                    <span id="dot-1">.</span>
-                    <span id="dot-2">.</span>
-                    <span id="dot-3">.</span>
-                    <span id="dot-4">.</span>
-                    <span id="dot-5">.</span>
+            {showSummary === false && (
+              <>
+                {/* Before Click Calculate button */}
+                <div className="calculator__animaiton-wrapper">
+                  <Image
+                    src="/images/wolt-mascot-reading.svg"
+                    alt="wolt mascot reading"
+                    width={0}
+                    height={0}
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                  <div className="dot-animation">
+                    <div className="dot-animation__wrapper">
+                      <span id="dot-1">.</span>
+                      <span id="dot-2">.</span>
+                      <span id="dot-3">.</span>
+                      <span id="dot-4">.</span>
+                      <span id="dot-5">.</span>
+                    </div>
                   </div>
                 </div>
-              </div> */}
-              {/* { showSummary && (
-                <><div>No summary</div></>
-              ) }
-              { showSummary && (
-                <><div>Show summary</div></>
-              ) } */}
+              </>
+            )}
 
-              {/* After Click Calculate button */}
-              <div className="calculator__summary-wrapper">
-                <div className="text--h2">Summary</div>
-                <div className="calculator__summary--list">
-                  <div className="text--b1">Small order surcharge</div>
-                  <div className="price">{smallOrderFee} €</div>
-                </div>
-                <div className="calculator__summary--list">
-                  <div className="text--b1">Delivery fee (... m)</div>
-                  <div className="price">{deliveryDistanceFee} €</div>
-                </div>
-                <div className="calculator__summary--list">
-                  <div className="text--b1">Amount of fee (...)</div>
-                  <div className="price">{amountOfItemsFee} €</div>
-                </div>
-                <div className="calculator__summary--list">
-                  <div className="text--b1">Peak hours fee</div>
-                  <div className="price">{deliveryTimeFee} €</div>
-                </div>
-                <div className="calculator__summary--line" />
-                <div className="calculator__summary--list">
-                  <div className="text--b1">Discount</div>
-                  <div className="price">-{discount} €</div>
-                  <div className="detail text--b2">
-                    {discountReason}
+            {showSummary === true && (
+              <>
+                {/* After Click Calculate button */}
+                <div className="calculator__summary-wrapper">
+                  <div className="text--h2">Summary</div>
+                  <div className="calculator__summary--list">
+                    <div className="text--b1">Small order surcharge</div>
+                    <div className="price">{smallOrderFee} €</div>
                   </div>
+                  <div className="calculator__summary--list">
+                    <div className="text--b1">Delivery fee (... m)</div>
+                    <div className="price">{deliveryDistanceFee} €</div>
+                  </div>
+                  <div className="calculator__summary--list">
+                    <div className="text--b1">Amount of fee (...)</div>
+                    <div className="price">{amountOfItemsFee} €</div>
+                  </div>
+                  <div className="calculator__summary--list">
+                    <div className="text--b1">Peak hours fee</div>
+                    <div className="price">{deliveryTimeFee} €</div>
+                  </div>
+                  <div className="calculator__summary--line" />
+                  <div className="calculator__summary--list">
+                    <div className="text--b1">Discount</div>
+                    <div className="price">-{discount} €</div>
+                    <div className="detail text--b2">{discountReason}</div>
+                  </div>
+                  <div className="calculator__summary--line" />
+                  <div className="calculator__summary--list">
+                    <div className="text--h2">Total</div>
+                    <div className="price text--h2">{totalFee} €</div>
+                  </div>
+                  <a
+                    href="https://wolt.com/fi/discovery"
+                    className="button--secondary calculator__order-button"
+                    target="_blank"
+                  >
+                    Order Now ->
+                  </a>
+                  <Image
+                    className="mascot-fly"
+                    src="/images/wolt-mascot-fly.svg"
+                    alt="wolt mascot flying"
+                    width={80}
+                    height={79}
+                  />
                 </div>
-                <div className="calculator__summary--line" />
-                <div className="calculator__summary--list">
-                  <div className="text--h2">Total</div>
-                  <div className="price text--h2">{totalFee} €</div>
-                </div>
-                <a href="https://wolt.com/fi/discovery" className="button--secondary calculator__order-button" target="_blank">Order Now -></a>
-                <Image
-                  className="mascot-fly"
-                  src="/images/wolt-mascot-fly.svg"
-                  alt="wolt mascot flying"
-                  width={80}
-                  height={79}
-                />
-              </div>
+              </>
+            )}
             </div>
           </div>
           <div className="contact__wrapper">

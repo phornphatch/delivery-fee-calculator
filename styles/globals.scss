@@ -269,6 +269,18 @@ a {
   &__summary-wrapper {
     display: grid;
     gap: 24px;
+    opacity: 1;
+    animation: slideUp 1s ease-in-out;
+  }
+  @keyframes slideUp {
+    0% {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
   }
 
   &__summary {
@@ -312,6 +324,16 @@ a {
   position: absolute;
   bottom: 0px;
   right: 16px;
+  animation: show 2s ease-in-out;
+  opacity: 1;
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .dot-animation {
