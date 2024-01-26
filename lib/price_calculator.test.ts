@@ -3,7 +3,7 @@ import {
   calculateCartValueFee,
   calculateDistanceFee,
   calculateAmountOfItemsFee,
-  totalFee,
+  summarizeFee,
 } from "./price_calculator";
 
 describe("calculateCartValueFee", () => {
@@ -70,38 +70,62 @@ describe("calculateAmountOfItemsFee", () => {
 
 describe("totalFee", () => {
   test("Cart value more than 10, no fee/ distance fee 2€ / no amount of items fee / not rush hours", () => {
-    expect(totalFee(12, 0, 2, 0, new Date("Jan 26, 2024 03:24:00"))).toBe(2);
+    expect(
+      summarizeFee(12, 0, 2, 0, new Date("Jan 26, 2024 03:24:00"))
+    ).toStrictEqual({ fee: 2, discount: 0 });
   });
 
   test("Delivery fee can never be more than 15€", () => {
-    expect(totalFee(4, 6, 6, 6, new Date("Jan 26, 2024 03:24:00"))).toBe(15);
+    expect(
+      summarizeFee(4, 6, 6, 6, new Date("Jan 26, 2024 03:24:00"))
+    ).toStrictEqual({ fee: 15, discount: 3 });
   });
 
   test("Cart value more than 200€, the delivery is free ", () => {
-    expect(totalFee(200, 6, 6, 6, new Date("Jan 26, 2024 03:24:00"))).toBe(0);
+    expect(
+      summarizeFee(200, 6, 6, 6, new Date("Jan 26, 2024 03:24:00"))
+    ).toStrictEqual({ fee: 0, discount: 18 });
   });
 
   test("During rush hour (3 pm), delivery fee will be multiplied by 1.2x", () => {
-    expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 15:00:00"))).toBe(7.2);
+    expect(
+      summarizeFee(2, 2, 2, 2, new Date("Jan 26, 2024 15:00:00"))
+    ).toStrictEqual({ fee: 7.2, discount: 0 });
   });
 
   test("During rush hour (3 - 7 pm), delivery fee will be multiplied by 1.2x", () => {
-    expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 16:00:00"))).toBe(7.2);
+    expect(
+      summarizeFee(2, 2, 2, 2, new Date("Jan 26, 2024 16:00:00"))
+    ).toStrictEqual({ fee: 7.2, discount: 0 });
+  });
+
+  test("During rush hour (3 - 7 pm) + min, delivery fee will be multiplied by 1.2x", () => {
+    expect(
+      summarizeFee(2, 2, 2, 2, new Date("Jan 26, 2024 16:30:00"))
+    ).toStrictEqual({ fee: 7.2, discount: 0 });
   });
 
   test("During rush hour (7 pm), delivery fee will be multiplied by 1.2x", () => {
-    expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:00:00"))).toBe(7.2);
+    expect(
+      summarizeFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:00:00"))
+    ).toStrictEqual({ fee: 7.2, discount: 0 });
   });
 
   test("After rush hour 1 sec, delivery fee will not be multiplied by 1.2x", () => {
-    expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:00:01"))).toBe(6);
+    expect(
+      summarizeFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:00:01"))
+    ).toStrictEqual({ fee: 6, discount: 0 });
   });
 
   test("After rush hour 1 min, delivery fee will not be multiplied by 1.2x ", () => {
-    expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:01:00"))).toBe(6);
+    expect(
+      summarizeFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:01:00"))
+    ).toStrictEqual({ fee: 6, discount: 0 });
   });
 
   test("During rush hour, delivery fee will be multiplied by 1.2x but can never be more than 15€", () => {
-    expect(totalFee(2, 2, 2, 10, new Date("Jan 26, 2024 16:00:00"))).toBe(15);
+    expect(
+      summarizeFee(2, 2, 2, 10, new Date("Jan 26, 2024 16:00:00"))
+    ).toStrictEqual({ fee: 15, discount: 1.8 });
   });
 });
