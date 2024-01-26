@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "next/font/google";
-import React, { FormEvent, FormEventHandler } from "react";
+import React, { FormEvent } from "react";
 import {
   calculateCartValueFee,
   calculateDistanceFee,
@@ -9,8 +8,6 @@ import {
   calculateDeliveredTimeFee,
   summarizeFee,
 } from "@/lib/price_calculator";
-
-const inter = Inter({ subsets: ["latin"] });
 
 function calculateAndUpdateState(
   formData: any,
