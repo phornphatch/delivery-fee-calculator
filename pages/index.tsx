@@ -65,6 +65,7 @@ export default function Home() {
                         type="number"
                         placeholder="Enter cart value"
                         className="price__input"
+                        id="cartValue"
                       />
                     </span>
                   </div>
@@ -77,6 +78,7 @@ export default function Home() {
                         type="number"
                         placeholder="Enter delivery distance"
                         className="price__input"
+                        id="deliveryDistance"
                       />
                     </span>
                   </div>
@@ -85,12 +87,13 @@ export default function Home() {
                       Amount of Item(s)<span>*</span>
                     </label>
                     <div className="input--amount-of-item">
-                      <div className="input__button--decrease">-</div>
-                      <div className="input__button--increase">+</div>
+                      <button className="input__button--decrease">-</button>
+                      <button className="input__button--increase">+</button>
                       <input
                         type="number"
                         placeholder="Enter amount of item(s)"
                         className="price__input"
+                        id="amountOfItems"
                       />
                     </div>
                   </div>
@@ -102,6 +105,7 @@ export default function Home() {
                       type="datetime-local"
                       placeholder="Value"
                       className="price__input"
+                      id="deliveredAt"
                     />
                   </div>
                 </div>
