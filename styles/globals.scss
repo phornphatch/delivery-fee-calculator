@@ -18,6 +18,10 @@ body {
   background-color: $color-primary-100;
 }
 
+button, a {
+  all: unset;
+}
+
 .input {
   &__wrapper {
     display: grid;
@@ -41,6 +45,8 @@ body {
       -webkit-appearance: textfield;
       -moz-appearance: textfield;
       appearance: textfield;
+      background-color: $color-white;
+      color: $color-black;
     }
 
     input[type="number"]::-webkit-inner-spin-button,
@@ -178,7 +184,7 @@ body {
     color: $color-primary-500;
     cursor: pointer;
     text-decoration: none;
-    
+
     &:hover {
       color: $color-primary-900;
       transition: all 0.2s ease-in-out;
@@ -210,9 +216,13 @@ body {
 
 .calculator {
   &__card-wrapper {
-    padding-top: 36px;
+    margin-top: 36px;
     display: grid;
     grid-template-columns: 1fr;
+    border-radius: 10px;
+    box-shadow: 6px 7px 18px -1px rgba(197,210,219,1);
+    -webkit-box-shadow: 6px 7px 18px -1px rgba(197,210,219,1);
+    -moz-box-shadow: 6px 7px 18px -1px rgba(197,210,219,1);
 
     @media (min-width: $breakpoint-tablet) {
       grid-template-columns: 7fr 6fr;
