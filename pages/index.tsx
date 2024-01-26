@@ -45,7 +45,6 @@ export default function Home() {
       return
     }
     const deliveryTime = new Date(deliveryTimeString as string)
-    console.log(deliveryTime)
     setDeliveryTimeFee(calculateDeliveredTimeFee(totalBeforeDeliveryTimeFee, deliveryTime))
 
     const cartValueString = formData.get("cartValue")

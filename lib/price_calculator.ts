@@ -26,9 +26,6 @@ export function calculateDeliveredTimeFee(
   totalBeforeDeliveryTimeFee: number,
   deliveredTime: Date
 ): number {
-  console.log(deliveredTime.getDay());
-  console.log(deliveredTime.getHours());
-  console.log(deliveredTime.getMinutes());
   if (
     (deliveredTime.getDay() === 5 && // check Friday? .getDay() return number between 0 - 6 , where 0 is Sunday then 5 is Friday.
     deliveredTime.getHours() >= 15 && // check if time in range 3 - 7 pm
@@ -63,7 +60,6 @@ export function summarizeFee(
     totalBeforeDeliveryTimeFee,
     deliveredTime
   );
-  console.log(deliveryTimeFee);
   const total = parseFloat(
     (totalBeforeDeliveryTimeFee + deliveryTimeFee).toFixed(2)
   );
