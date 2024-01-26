@@ -2,13 +2,15 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-
+import React from "react";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// const [showSummary, setShowSummary] = React.useState(false)
+
 function calculateDeliveryPrice(e: Event) {
   e.preventDefault();
-
 }
 
 export default function Home() {
@@ -16,7 +18,10 @@ export default function Home() {
     <>
       <Head>
         <title>WOLT Delivery Fee Calculator</title>
-        <meta name="description" content="Wolt Summer 2024 Engineering Internships Assignment - created by Phornphatch (ZUMO)" />
+        <meta
+          name="description"
+          content="Wolt Summer 2024 Engineering Internships Assignment - created by Phornphatch (ZUMO)"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,9 +30,23 @@ export default function Home() {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="msapplication-TileColor" content="#009de0" />
         <meta name="theme-color" content="#ffffff"></meta>
@@ -44,17 +63,19 @@ export default function Home() {
             <div className="text--h1">Delivery Fee Calculator</div>
             <div className="text--sh1">
               <div>
-                Calculate with confidence! 
-                No surprises in delivery prices
+                Calculate with confidence! No surprises in delivery prices
               </div>
               <div>your convenience, our commitment. 📦💰</div>
             </div>
           </div>
           <div className="calculator__card-wrapper">
             <div className="calculator__card-wrapper--left">
-              <form onSubmit={(e) => {
-                calculateDeliveryPrice
-                }}>
+              <form
+                onSubmit={(e) => {
+                  setShowSummary(true);
+                  calculateDeliveryPrice;
+                }}
+              >
                 <div className="calculator__form-wrapper">
                   <div className="input__wrapper">
                     <label>
@@ -120,16 +141,33 @@ export default function Home() {
             </div>
             <div className="calculator__card-wrapper--right">
               {/* Before Click Calculate button */}
-              {/* <Image
-                src="/images/wolt-mascot-reading.svg"
-                alt="wolt mascot reading"
-                width={0}
-                height={0}
-                style={{ width: "100%", height: "auto" }}
-              /> */}
+              <div className="calculator__animaiton-wrapper">
+                <Image
+                  src="/images/wolt-mascot-reading.svg"
+                  alt="wolt mascot reading"
+                  width={0}
+                  height={0}
+                  style={{ width: "100%", height: "auto" }}
+                />
+                <div className="dot-animation">
+                  <div className="dot-animation__wrapper">
+                    <span id="dot-1">.</span>
+                    <span id="dot-2">.</span>
+                    <span id="dot-3">.</span>
+                    <span id="dot-4">.</span>
+                    <span id="dot-5">.</span>
+                  </div>
+                </div>
+              </div>
+              {/* { showSummary && (
+                <><div>No summary</div></>
+              ) }
+              { showSummary && (
+                <><div>Show summary</div></>
+              ) } */}
 
               {/* After Click Calculate button */}
-              <div className="calculator__summary-wrapper">
+              {/* <div className="calculator__summary-wrapper">
                 <div className="text--h2">Summary</div>
                 <div className="calculator__summary--list">
                   <div className="text--b1">Small order surcharge</div>
@@ -169,7 +207,7 @@ export default function Home() {
                   width={80}
                   height={79}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
