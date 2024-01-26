@@ -359,7 +359,7 @@ export default function Home() {
           </div>
           {showError && (
             <div className="flash-message__wrapper">
-              <div className="flash-message">Make sure</div>
+              <div className="flash-message">Please fill out all required fields before calculating.</div>
             </div>
           )}
         </div>
