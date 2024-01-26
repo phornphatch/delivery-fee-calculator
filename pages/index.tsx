@@ -189,6 +189,7 @@ export default function Home() {
                         placeholder="Enter cart value"
                         className="price__input"
                         name="cartValue"
+                        step="any"
                       />
                     </span>
                   </div>
@@ -202,6 +203,7 @@ export default function Home() {
                         placeholder="Enter delivery distance"
                         className="price__input"
                         name="deliveryDistance"
+                        step="any"
                       />
                     </span>
                   </div>
@@ -305,13 +307,13 @@ export default function Home() {
 
                     <div className="calculator__summary--list">
                       <div className="text--b1">
-                        Delivery fee ({deliveryDistance} m)
+                        Delivery fee <span className="text--b2">({deliveryDistance} m)</span>
                       </div>
                       <div className="price">{deliveryDistanceFee} €</div>
                     </div>
                     <div className="calculator__summary--list">
                       <div className="text--b1">
-                        Amount of items fee ({amountOfItems} item(s))
+                        Amount of items fee <div className="text--b2">({amountOfItems} item(s))</div>
                       </div>
                       <div className="price">{amountOfItemsFee} €</div>
                     </div>
