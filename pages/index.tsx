@@ -124,6 +124,10 @@ export default function Home() {
                   <div className="text--b1">Amount of fee (...)</div>
                   <div className="price">xx €</div>
                 </div>
+                <div className="calculator__summary--list">
+                  <div className="text--b1">Peak hours fee</div>
+                  <div className="price">xx €</div>
+                </div>
                 <div className="calculator__summary--line" />
                 <div className="calculator__summary--list">
                   <div className="text--b1">Discount</div>
