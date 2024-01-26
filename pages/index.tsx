@@ -1,9 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 import React, { FormEvent, FormEventHandler } from "react";
-import { useState } from "react";
 import {
   calculateCartValueFee,
   calculateDistanceFee,
@@ -18,11 +16,13 @@ function calculateAndUpdateState(
   formData: any,
   calculateFunction: any,
   inputName: string,
-  stateUpdater: any
+  stateUpdater: any,
+  setShowError: any
 ) {
   const valueString = formData.get(inputName);
   if (!valueString) {
     console.error("No cart Value");
+    setShowError(true);
     return;
   }
   const value = parseFloat(valueString as string);
@@ -44,28 +44,33 @@ export default function Home() {
     number | undefined
   >();
   const [deliveryDistance, setDeliveryDistance] = React.useState("");
+  const [showError, setShowError] = React.useState(false);
 
   function calculateDeliveryPrice(e: FormEvent) {
     e.preventDefault();
+
     const formData = new FormData(e.target as HTMLFormElement);
 
     const smallOrderFee = calculateAndUpdateState(
       formData,
       calculateCartValueFee,
       "cartValue",
-      setSmallOrderFee
+      setSmallOrderFee,
+      setShowError
     );
     const deliveryDistanceFee = calculateAndUpdateState(
       formData,
       calculateDistanceFee,
       "deliveryDistance",
-      setDeliveryDistanceFee
+      setDeliveryDistanceFee,
+      setShowError
     );
     const amountOfItemsFee = calculateAndUpdateState(
       formData,
       calculateAmountOfItemsFee,
       "amountOfItems",
-      setAmountOfItemsFee
+      setAmountOfItemsFee,
+      setShowError
     );
     const totalBeforeDeliveryTimeFee =
       smallOrderFee + deliveryDistanceFee + amountOfItemsFee;
@@ -73,6 +78,7 @@ export default function Home() {
     const deliveryTimeString = formData.get("deliveredAt");
     if (!deliveryTimeString) {
       console.error("No deliveryTime selected");
+      setShowError(true);
       return;
     }
     const deliveryTime = new Date(deliveryTimeString as string);
@@ -83,6 +89,7 @@ export default function Home() {
     const cartValueString = formData.get("cartValue");
     if (!cartValueString) {
       console.error("No cartValue selected");
+      setShowError(true);
       return;
     }
     const cartValue = parseFloat(cartValueString as string);
@@ -295,7 +302,7 @@ export default function Home() {
                       <div className="text--b1">Small order surcharge</div>
                       <div className="price">{smallOrderFee} €</div>
                     </div>
-                    
+
                     <div className="calculator__summary--list">
                       <div className="text--b1">
                         Delivery fee ({deliveryDistance} m)
@@ -350,6 +357,11 @@ export default function Home() {
               findingzumo.com
             </a>
           </div>
+          {showError && (
+            <div className="flash-message__wrapper">
+              <div className="flash-message">Make sure</div>
+            </div>
+          )}
         </div>
       </main>
     </>
