@@ -6,7 +6,7 @@ import {
   totalFee,
 } from "./price_calculator";
 
-describe("calculateSurcharge", () => {
+describe("calculateCartValueFee", () => {
   test("If the cart value is less than 10€, a small order surcharge is added to the delivery price", () => {
     expect(calculateCartValueFee(8)).toBe(2);
   });
@@ -69,35 +69,39 @@ describe("calculateAmountOfItemsFee", () => {
 });
 
 describe("totalFee", () => {
-  test("cart value > 10 no surcharge fee/ distance < 1000m distance fee 2/ item < 5 no charge", () => {
+  test("Cart value more than 10, no fee/ distance fee 2€ / no amount of items fee / not rush hours", () => {
     expect(totalFee(12, 0, 2, 0, new Date("Jan 26, 2024 03:24:00"))).toBe(2);
   });
 
-  test("6 6 6", () => {
-    expect(totalFee(12, 6, 6, 6, new Date("Jan 26, 2024 03:24:00"))).toBe(15);
+  test("Delivery fee can never be more than 15€", () => {
+    expect(totalFee(4, 6, 6, 6, new Date("Jan 26, 2024 03:24:00"))).toBe(15);
   });
 
-  test("cart value is equal or more than 200€, 6 6 6 ", () => {
+  test("Cart value more than 200€, the delivery is free ", () => {
     expect(totalFee(200, 6, 6, 6, new Date("Jan 26, 2024 03:24:00"))).toBe(0);
   });
 
-  test("cart value is equal or more than 200€, 6 6 6, rush hour ", () => {
+  test("During rush hour (3 pm), delivery fee will be multiplied by 1.2x", () => {
     expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 15:00:00"))).toBe(7.2);
   });
 
-  test("cart value is equal or more than 200€, 6 6 6, rush hour ", () => {
+  test("During rush hour (3 - 7 pm), delivery fee will be multiplied by 1.2x", () => {
     expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 16:00:00"))).toBe(7.2);
   });
 
-  test("cart value is equal or more than 200€, 6 6 6, rush hour ", () => {
+  test("During rush hour (7 pm), delivery fee will be multiplied by 1.2x", () => {
     expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:00:00"))).toBe(7.2);
   });
 
-  test("cart value is equal or more than 200€, 6 6 6, rush hour ", () => {
+  test("After rush hour 1 sec, delivery fee will not be multiplied by 1.2x", () => {
     expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:00:01"))).toBe(6);
   });
 
-  test("cart value is equal or more than 200€, 6 6 6, rush hour ", () => {
+  test("After rush hour 1 min, delivery fee will not be multiplied by 1.2x ", () => {
     expect(totalFee(2, 2, 2, 2, new Date("Jan 26, 2024 19:01:00"))).toBe(6);
+  });
+
+  test("During rush hour, delivery fee will be multiplied by 1.2x but can never be more than 15€", () => {
+    expect(totalFee(2, 2, 2, 10, new Date("Jan 26, 2024 16:00:00"))).toBe(15);
   });
 });

@@ -23,7 +23,7 @@ export function calculateAmountOfItemsFee(amountOfItems: number): number {
 }
 
 export function calculateDeliveredTimeFee(
-  totalBeforDeliveryTimeFee: number,
+  totalBeforeDeliveryTimeFee: number,
   deliveredTime: Date
 ): number {
   if (
@@ -33,7 +33,7 @@ export function calculateDeliveredTimeFee(
     deliveredTime.getMinutes() === 0 &&
     deliveredTime.getSeconds() === 0
   ) {
-    return totalBeforDeliveryTimeFee * 1.2 - totalBeforDeliveryTimeFee;
+    return totalBeforeDeliveryTimeFee * 1.2 - totalBeforeDeliveryTimeFee;
   }
   return 0;
 }
@@ -48,26 +48,17 @@ export function totalFee(
   if (cartValue >= 200) {
     return 0;
   }
-  const totalBeforDeliveryTimeFee =
+  const totalBeforeDeliveryTimeFee =
     smallOrderFee + distanceFee + amountOfItemsFee;
   const deliveryTimeFee = calculateDeliveredTimeFee(
-    totalBeforDeliveryTimeFee,
+    totalBeforeDeliveryTimeFee,
     deliveredTime
   );
   const total = parseFloat(
-    (totalBeforDeliveryTimeFee + deliveryTimeFee).toFixed(2)
+    (totalBeforeDeliveryTimeFee + deliveryTimeFee).toFixed(2)
   );
   if (total > 15) {
     return 15;
   }
   return total;
-}
-
-export function calculate(
-  cartValueInEuros: number,
-  distanceInMeters: number,
-  amountOfItems: number,
-  deliveredTime: Date
-): number {
-  return 0;
 }
