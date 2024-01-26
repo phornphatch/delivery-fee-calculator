@@ -307,7 +307,11 @@ a {
 
   &__order-button {
     text-align: end;
-    padding-right: 44px;
+    padding-right: 80px;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-right: 44px
+    }
   }
 
   &__animaiton-wrapper {
@@ -324,21 +328,32 @@ a {
   position: absolute;
   bottom: 0px;
   right: 16px;
-  animation: show 3s ease-in;
+  animation: show 3s ease-in-out;
 }
 @keyframes show {
   0% {
     opacity: 0;
+    transform: translateY(100px);
+  }
+  30% {
+    opacity: 0.5;
     transform: translateY(0px);
   }
-  30%,
-  70%,
-  100% {
+  50% {
+    opacity: 0.9;
+    transform: translateY(0px);
+  }
+  60% {
     opacity: 1;
+    transform: translateX(-150px);
+  }
+  70%, 80%, 90%, 100% {
+    opacity: 1;
+    transform: translateX(0px);
     transform: translateY(0px);
   }
-  60%,
-  80% {
+  75%, 85%, 95% {
+    opacity: 1;
     transform: translateY(-10px);
   }
 }
