@@ -44,59 +44,63 @@ export default function Home() {
           <div className="calculator__card-wrapper">
             <div className="calculator__card-wrapper--left">
               <form onSubmit={calculateDeliveryPrice}>
-              <div className="calculator__form-wrapper">
-                <div className="input__wrapper">
-                  <label>
-                    Cart value<span>*</span>
-                  </label>
-                  <span className="input__symbol--currency">
+                <div className="calculator__form-wrapper">
+                  <div className="input__wrapper">
+                    <label>
+                      Cart value<span>*</span>
+                    </label>
+                    <span className="input__symbol--currency">
+                      <input
+                        type="number"
+                        placeholder="Enter cart value"
+                        className="price__input"
+                      />
+                    </span>
+                  </div>
+                  <div className="input__wrapper">
+                    <label>
+                      Delivery distance<span>*</span>
+                    </label>
+                    <span className="input__symbol--distance">
+                      <input
+                        type="number"
+                        placeholder="Enter delivery distance"
+                        className="price__input"
+                      />
+                    </span>
+                  </div>
+                  <div className="input__wrapper">
+                    <label>
+                      Amount of Item(s)<span>*</span>
+                    </label>
+                    <div className="input--amount-of-item">
+                      <div className="input__button--decrease">-</div>
+                      <div className="input__button--increase">+</div>
+                      <input
+                        type="number"
+                        placeholder="Enter amount of item(s)"
+                        className="price__input"
+                      />
+                    </div>
+                  </div>
+                  <div className="input__wrapper">
+                    <label>
+                      Date/Time<span>*</span>
+                    </label>
                     <input
-                      type="number"
-                      placeholder="Enter cart value"
-                      className="price__input"
-                    />
-                  </span>
-                </div>
-                <div className="input__wrapper">
-                  <label>
-                    Delivery distance<span>*</span>
-                  </label>
-                  <span className="input__symbol--distance">
-                    <input
-                      type="number"
-                      placeholder="Enter delivery distance"
-                      className="price__input"
-                    />
-                  </span>
-                </div>
-                <div className="input__wrapper">
-                  <label>
-                    Amount of Item(s)<span>*</span>
-                  </label>
-                  <div className="input--amount-of-item">
-                    <div className="input__button--decrease">-</div>
-                    <div className="input__button--increase">+</div>
-                    <input
-                      type="number"
-                      placeholder="Enter amount of item(s)"
+                      type="datetime-local"
+                      placeholder="Value"
                       className="price__input"
                     />
                   </div>
                 </div>
-                <div className="input__wrapper">
-                  <label>
-                    Date/Time<span>*</span>
-                  </label>
+                <div className="calculator__btn-wrapper">
                   <input
-                    type="datetime-local"
-                    placeholder="Value"
-                    className="price__input"
+                    type="submit"
+                    value="Calculate"
+                    className="button--primary"
                   />
                 </div>
-              </div>
-              <div className="calculator__btn-wrapper">
-                <input type="submit" value="Calculate" className="button--primary" />
-              </div>
               </form>
             </div>
             <div className="calculator__card-wrapper--right">
@@ -142,16 +146,14 @@ export default function Home() {
                   <div className="price text--h2">xx €</div>
                 </div>
 
-                <div>
-                  Order Now -
-                </div>
+                <a href="https://wolt.com/fi/discovery" className="button--secondary calculator__order-button" target="_blank">Order Now -></a>
                 <Image
-                className="mascot-fly"
-              src="/images/wolt-mascot-fly.svg"
-              alt="wolt logo"
-              width={60}
-              height={65}
-            />
+                  className="mascot-fly"
+                  src="/images/wolt-mascot-fly.svg"
+                  alt="wolt mascot flying"
+                  width={80}
+                  height={79}
+                />
               </div>
             </div>
           </div>
