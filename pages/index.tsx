@@ -40,6 +40,10 @@ export default function Home() {
   const [discount, setDiscount] = React.useState(0);
   const [discountReason, setDiscountReason] = React.useState("");
   const [totalFee, setTotalFee] = React.useState(0);
+  const [amountOfItems, setAmountOfItems] = React.useState<
+    number | undefined
+  >();
+  const [deliveryDistance, setDeliveryDistance] = React.useState("");
 
   function calculateDeliveryPrice(e: FormEvent) {
     e.preventDefault();
@@ -106,6 +110,7 @@ export default function Home() {
       setDiscountReason("No discount");
     }
 
+    setDeliveryDistance(formData.get("deliveryDistance") as string);
     setShowSummary(true);
   }
 
@@ -198,13 +203,40 @@ export default function Home() {
                       Amount of Item(s)<span>*</span>
                     </label>
                     <div className="input--amount-of-item">
-                      <button className="input__button--decrease">-</button>
-                      <button className="input__button--increase">+</button>
+                      <button
+                        className="input__button--decrease"
+                        onClick={() => {
+                          if (!amountOfItems) {
+                            setAmountOfItems(0);
+                            return;
+                          }
+                          setAmountOfItems(amountOfItems - 1);
+                        }}
+                      >
+                        -
+                      </button>
+                      <button
+                        className="input__button--increase"
+                        onClick={() => {
+                          if (!amountOfItems) {
+                            setAmountOfItems(1);
+                            return;
+                          }
+
+                          setAmountOfItems(amountOfItems + 1);
+                        }}
+                      >
+                        +
+                      </button>
                       <input
                         type="number"
                         placeholder="Enter amount of item(s)"
                         className="price__input"
                         name="amountOfItems"
+                        value={amountOfItems}
+                        onChange={(e) =>
+                          setAmountOfItems(e.target.valueAsNumber)
+                        }
                       />
                     </div>
                   </div>
@@ -230,69 +262,75 @@ export default function Home() {
               </form>
             </div>
             <div className="calculator__card-wrapper--right">
-            {showSummary === false && (
-              <>
-                {/* Before Click Calculate button */}
-                <div className="calculator__animaiton-wrapper">
-                  <Image
-                    src="/images/wolt-mascot-reading.svg"
-                    alt="wolt mascot reading"
-                    width={0}
-                    height={0}
-                    style={{ width: "100%", height: "auto" }}
-                  />
-                  <div className="dot-animation">
-                    <div className="dot-animation__wrapper">
-                      <span id="dot-1">.</span>
-                      <span id="dot-2">.</span>
-                      <span id="dot-3">.</span>
-                      <span id="dot-4">.</span>
-                      <span id="dot-5">.</span>
+              {showSummary === false && (
+                <>
+                  {/* Before Click Calculate button */}
+                  <div className="calculator__animaiton-wrapper">
+                    <Image
+                      src="/images/wolt-mascot-reading.svg"
+                      alt="wolt mascot reading"
+                      width={0}
+                      height={0}
+                      style={{ width: "100%", height: "auto" }}
+                    />
+                    <div className="dot-animation">
+                      <div className="dot-animation__wrapper">
+                        <span id="dot-1">.</span>
+                        <span id="dot-2">.</span>
+                        <span id="dot-3">.</span>
+                        <span id="dot-4">.</span>
+                        <span id="dot-5">.</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </>
-            )}
+                </>
+              )}
 
-            {showSummary === true && (
-              <>
-                {/* After Click Calculate button */}
-                <div className="calculator__summary-wrapper">
-                  <div className="text--h2">Summary</div>
-                  <div className="calculator__summary--list">
-                    <div className="text--b1">Small order surcharge</div>
-                    <div className="price">{smallOrderFee} €</div>
+              {showSummary === true && (
+                <>
+                  {/* After Click Calculate button */}
+                  <div className="calculator__summary-wrapper">
+                    <div className="text--h2">Summary</div>
+                    <div className="calculator__summary--list">
+                      <div className="text--b1">Small order surcharge</div>
+                      <div className="price">{smallOrderFee} €</div>
+                    </div>
+                    
+                    <div className="calculator__summary--list">
+                      <div className="text--b1">
+                        Delivery fee ({deliveryDistance} m)
+                      </div>
+                      <div className="price">{deliveryDistanceFee} €</div>
+                    </div>
+                    <div className="calculator__summary--list">
+                      <div className="text--b1">
+                        Amount of items fee ({amountOfItems} item(s))
+                      </div>
+                      <div className="price">{amountOfItemsFee} €</div>
+                    </div>
+                    <div className="calculator__summary--list">
+                      <div className="text--b1">Peak hours fee</div>
+                      <div className="price">{deliveryTimeFee} €</div>
+                    </div>
+                    <div className="calculator__summary--line" />
+                    <div className="calculator__summary--list">
+                      <div className="text--b1">Discount</div>
+                      <div className="price">-{discount} €</div>
+                      <div className="detail text--b2">{discountReason}</div>
+                    </div>
+                    <div className="calculator__summary--line" />
+                    <div className="calculator__summary--list">
+                      <div className="text--h2">Total</div>
+                      <div className="price text--h2">{totalFee} €</div>
+                    </div>
+                    <a
+                      href="https://wolt.com/fi/discovery"
+                      className="button--secondary calculator__order-button"
+                      target="_blank"
+                    >
+                      {`Order Now ->`}
+                    </a>
                   </div>
-                  <div className="calculator__summary--list">
-                    <div className="text--b1">Delivery fee (... m)</div>
-                    <div className="price">{deliveryDistanceFee} €</div>
-                  </div>
-                  <div className="calculator__summary--list">
-                    <div className="text--b1">Amount of fee (...)</div>
-                    <div className="price">{amountOfItemsFee} €</div>
-                  </div>
-                  <div className="calculator__summary--list">
-                    <div className="text--b1">Peak hours fee</div>
-                    <div className="price">{deliveryTimeFee} €</div>
-                  </div>
-                  <div className="calculator__summary--line" />
-                  <div className="calculator__summary--list">
-                    <div className="text--b1">Discount</div>
-                    <div className="price">-{discount} €</div>
-                    <div className="detail text--b2">{discountReason}</div>
-                  </div>
-                  <div className="calculator__summary--line" />
-                  <div className="calculator__summary--list">
-                    <div className="text--h2">Total</div>
-                    <div className="price text--h2">{totalFee} €</div>
-                  </div>
-                  <a
-                    href="https://wolt.com/fi/discovery"
-                    className="button--secondary calculator__order-button"
-                    target="_blank"
-                  >
-                    Order Now ->
-                  </a>
                   <Image
                     className="mascot-fly"
                     src="/images/wolt-mascot-fly.svg"
@@ -300,9 +338,8 @@ export default function Home() {
                     width={80}
                     height={79}
                   />
-                </div>
-              </>
-            )}
+                </>
+              )}
             </div>
           </div>
           <div className="contact__wrapper">
