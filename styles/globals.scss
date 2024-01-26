@@ -21,6 +21,7 @@ body {
 button,
 a {
   all: unset;
+  cursor: pointer;
 }
 
 .input {
@@ -317,11 +318,11 @@ a {
   @extend .text--h1;
   color: $color-primary-700;
   position: absolute;
-  top: 10px;
+  top: 20px;
   right: 40%;
   min-height: 10px;
 
- &__wrapper span {
+  &__wrapper span {
     position: relative;
     display: inline-block;
   }
@@ -340,5 +341,16 @@ a {
     20% {
       transform: translateY(-10px);
     }
+  }
+}
+
+.contact {
+  &__wrapper {
+    @extend .text--b2;
+    padding-top: 40px;
+    text-align: right;
+    color: $color-primary-900;
+    display: grid;
+    gap: 4px;
   }
 }

@@ -210,6 +210,14 @@ export default function Home() {
               </div> */}
             </div>
           </div>
+          <div className="contact__wrapper">
+            <div>Applying for front-end position in Helsinki</div>
+            <div>Phornphatch Hiranpattanakul (ZUMO)</div>
+            <a href="phornphatch@gmail.com">phornphatch@gmail.com</a>
+            <a href="http://findingzumo.com/" target="_blank">
+              findingzumo.com
+            </a>
+          </div>
         </div>
       </main>
     </>
