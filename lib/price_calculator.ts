@@ -28,15 +28,15 @@ export function calculateDeliveredTimeFee(
 ): number {
   if (
     (deliveredTime.getDay() === 5 && // check Friday? .getDay() return number between 0 - 6 , where 0 is Sunday then 5 is Friday.
-    deliveredTime.getHours() >= 15 && // check if time in range 3 - 7 pm
-    deliveredTime.getHours() < 19)
-    || 
-  
+      deliveredTime.getHours() >= 15 && // check if time in range 3 - 7 pm
+      deliveredTime.getHours() < 19) ||
     (deliveredTime.getHours() === 19 &&
-    deliveredTime.getMinutes() === 0 &&
-    deliveredTime.getSeconds() === 0)
+      deliveredTime.getMinutes() === 0 &&
+      deliveredTime.getSeconds() === 0)
   ) {
-    return parseFloat((totalBeforeDeliveryTimeFee * 1.2 - totalBeforeDeliveryTimeFee).toFixed(2));
+    return parseFloat(
+      (totalBeforeDeliveryTimeFee * 1.2 - totalBeforeDeliveryTimeFee).toFixed(2)
+    );
   }
 
   return 0;

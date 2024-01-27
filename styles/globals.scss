@@ -310,7 +310,7 @@ a {
     padding-right: 80px;
 
     @media (min-width: $breakpoint-tablet) {
-      padding-right: 44px
+      padding-right: 44px;
     }
   }
 
@@ -347,12 +347,17 @@ a {
     opacity: 1;
     transform: translateX(-150px);
   }
-  70%, 80%, 90%, 100% {
+  70%,
+  80%,
+  90%,
+  100% {
     opacity: 1;
     transform: translateX(0px);
     transform: translateY(0px);
   }
-  75%, 85%, 95% {
+  75%,
+  85%,
+  95% {
     opacity: 1;
     transform: translateY(-10px);
   }
@@ -422,7 +427,6 @@ a {
     height: 100vh;
   }
 }
-
 @keyframes flashMessage {
   0% {
     top: -100px;

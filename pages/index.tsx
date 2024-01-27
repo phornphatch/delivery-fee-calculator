@@ -114,7 +114,10 @@ export default function Home() {
       setDiscountReason("No discount");
     }
 
+    // Show delivery distance in summary section
     setDeliveryDistance(formData.get("deliveryDistance") as string);
+
+    // Change mascot to summary in calculator card
     setShowSummary(true);
   }
 
@@ -304,13 +307,17 @@ export default function Home() {
 
                     <div className="calculator__summary--list">
                       <div className="text--b1">
-                        Delivery fee <span className="text--b2">({deliveryDistance} m)</span>
+                        Delivery fee{" "}
+                        <span className="text--b2">({deliveryDistance} m)</span>
                       </div>
                       <div className="price">{deliveryDistanceFee} €</div>
                     </div>
                     <div className="calculator__summary--list">
                       <div className="text--b1">
-                        Amount of items fee <div className="text--b2">({amountOfItems} item(s))</div>
+                        Amount of items fee{" "}
+                        <div className="text--b2">
+                          ({amountOfItems} item(s))
+                        </div>
                       </div>
                       <div className="price">{amountOfItemsFee} €</div>
                     </div>
@@ -358,7 +365,9 @@ export default function Home() {
           </div>
           {showError && (
             <div className="flash-message__wrapper">
-              <div className="flash-message">Please fill out all required fields before calculating.</div>
+              <div className="flash-message">
+                Please fill out all required fields before calculating.
+              </div>
             </div>
           )}
         </div>
