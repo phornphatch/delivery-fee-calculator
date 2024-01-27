@@ -3,6 +3,8 @@
 A web application to calculate delivery fees, which is an assignment to apply for Wolt Summer 2024 Engineering Internships.
 Created by Ms. Phornphatch Hiranpattnakul (ZUMO) to apply for Frontend (React + TS) position in Helsinki.
 
+Design : https://www.figma.com/file/b3OsEFN4mebpfCUG0TAlRg/Untitled?type=design&node-id=0%3A1&mode=design&t=b4TBKSH5bLykfsEd-1
+
 # Prerequisite
 
 - This project is compatible with Node.js version 18.17.0 or higher.
