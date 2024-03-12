@@ -1,8 +1,8 @@
-$color-primary-100: #f8f8fb;
+$color-primary-100: #F1F0FF;
 $color-primary-300: #ebf7fc;
-$color-primary-500: #00b5e6;
-$color-primary-700: #009de0;
-$color-primary-900: #162e61;
+$color-primary-500: #443266;
+$color-primary-700: #8C489F;
+$color-primary-900: #8C489F;
 $color-white: #ffffff;
 $color-black: #080f1e;
 $color-success: #65c665;
@@ -62,8 +62,7 @@ a {
       font-weight: 400;
 
       &::-webkit-calendar-picker-indicator {
-        filter: invert(40%) sepia(80%) saturate(1907%) hue-rotate(170deg)
-          brightness(98%) contrast(101%);
+        filter: invert(36%) sepia(19%) saturate(1705%) hue-rotate(241deg) brightness(93%) contrast(92%);
       }
     }
   }
@@ -183,7 +182,7 @@ a {
   }
   &--secondary {
     @extend .text--btn2;
-    color: $color-primary-500;
+    color: $color-primary-700;
     cursor: pointer;
     text-decoration: none;
 
@@ -368,7 +367,7 @@ a {
   color: $color-primary-700;
   position: absolute;
   top: 20px;
-  right: 40%;
+  right: 50%;
   min-height: 10px;
 
   &__wrapper span {
