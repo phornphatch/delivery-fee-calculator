@@ -1,5 +1,5 @@
 {
-  "name": "wolt-delivery-fee-calculation",
+  "name": "delivery-fee-calculation",
   "version": "0.1.0",
   "private": true,
   "engines": {
