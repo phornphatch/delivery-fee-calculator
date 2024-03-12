@@ -124,10 +124,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>WOLT Delivery Fee Calculator</title>
+        <title>Delivery Fee Calculator</title>
         <meta
           name="description"
-          content="Wolt Summer 2024 Engineering Internships Assignment - created by Phornphatch (ZUMO)"
+          content="A web application for calculate the delivery fee  - created by Phornphatch (ZUMO)"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -161,12 +161,6 @@ export default function Home() {
       <main>
         <div className="main-container">
           <div className="title__wrapper">
-            <Image
-              src="/images/wolt-logo.svg"
-              alt="wolt logo"
-              width={200}
-              height={75}
-            />
             <div className="text--h1">Delivery Fee Calculator</div>
             <div className="text--sh1">
               <div>
@@ -276,8 +270,8 @@ export default function Home() {
                   {/* Before Click Calculate button */}
                   <div className="calculator__animaiton-wrapper">
                     <Image
-                      src="/images/wolt-mascot-reading.svg"
-                      alt="wolt mascot reading"
+                      src="/images/animate.gif"
+                      alt="animation image"
                       width={0}
                       height={0}
                       style={{ width: "100%", height: "auto" }}
@@ -337,7 +331,7 @@ export default function Home() {
                       <div className="price text--h2">{totalFee} €</div>
                     </div>
                     <a
-                      href="https://wolt.com/fi/discovery"
+                      href="https://findingzumo.com/"
                       className="button--secondary calculator__order-button"
                       target="_blank"
                     >
@@ -346,8 +340,8 @@ export default function Home() {
                   </div>
                   <Image
                     className="mascot-fly"
-                    src="/images/wolt-mascot-fly.svg"
-                    alt="wolt mascot flying"
+                    src="/images/animate-map.gif"
+                    alt="animation image"
                     width={80}
                     height={79}
                   />
@@ -356,7 +350,6 @@ export default function Home() {
             </div>
           </div>
           <div className="contact__wrapper">
-            <div>Applying for front-end position in Helsinki</div>
             <div>Phornphatch Hiranpattanakul (ZUMO)</div>
             <a href="phornphatch@gmail.com">phornphatch@gmail.com</a>
             <a href="http://findingzumo.com/" target="_blank">
