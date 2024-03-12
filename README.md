@@ -1,9 +1,9 @@
-# Wolt Delivery Fee Calculator
+# Delivery Fee Calculator
 
-A web application to calculate delivery fees, which is an assignment to apply for Wolt Summer 2024 Engineering Internships.
-Created by Ms. Phornphatch Hiranpattnakul (ZUMO) to apply for Frontend (React + TS) position in Helsinki.
+A web application to calculate delivery fees
+Created by Ms. Phornphatch Hiranpattnakul (ZUMO)
 
-Design : https://www.figma.com/file/b3OsEFN4mebpfCUG0TAlRg/Untitled?type=design&node-id=0%3A1&mode=design&t=b4TBKSH5bLykfsEd-1
+Design : https://www.figma.com/file/yMqY9SeFj0l1xzpr9c9PZS/Delivery-Fee-Calculator--Phornphatch?type=design&node-id=0%3A1&mode=design&t=mspLWaTwzD5CfbII-1
 
 # Prerequisite
 
