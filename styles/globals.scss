@@ -1,8 +1,8 @@
 $color-primary-100: #F1F0FF;
 $color-primary-300: #ebf7fc;
-$color-primary-500: #443266;
-$color-primary-700: #8C489F;
-$color-primary-900: #8C489F;
+$color-primary-500: #8C489F;
+$color-primary-700: #802499;
+$color-primary-900: #443266;
 $color-white: #ffffff;
 $color-black: #080f1e;
 $color-success: #65c665;
@@ -167,7 +167,7 @@ a {
     border-width: 0;
     box-shadow: none;
     color: $color-primary-100;
-    background-color: $color-primary-700;
+    background-color: $color-primary-500;
     border-radius: 40px;
     height: 45px;
     display: grid;
@@ -176,7 +176,7 @@ a {
     width: 100%;
 
     &:hover {
-      background-color: $color-primary-900;
+      background-color: $color-primary-700;
       transition: all 0.2s ease-in-out;
     }
   }
@@ -187,7 +187,7 @@ a {
     text-decoration: none;
 
     &:hover {
-      color: $color-primary-900;
+      color: $color-primary-500;
       transition: all 0.2s ease-in-out;
     }
   }
@@ -230,7 +230,7 @@ a {
     }
 
     &--left {
-      background-color: $color-primary-500;
+      background-color: $color-primary-900;
       border-radius: 10px 10px 0px 0px;
       padding: 40px 20px 40px 20px;
 
@@ -300,7 +300,7 @@ a {
       display: grid;
       width: 100%;
       height: 1px;
-      background-color: $color-primary-700;
+      background-color: $color-primary-900;
     }
   }
 
@@ -397,7 +397,7 @@ a {
     @extend .text--b2;
     padding-top: 40px;
     text-align: right;
-    color: $color-primary-900;
+    color: $color-primary-700;
     display: grid;
     gap: 4px;
   }
